@@ -16,12 +16,13 @@
     "@astrojs/mdx": "^0.10.2",
     "@astrojs/prefetch": "^0.0.7",
     "@astrojs/solid-js": "^1.1.0",
+    "@astrojs/tailwind": "^1.0.0",
+    "@tailwindcss/typography": "^0.5.4",
     "astro": "^1.0.9",
     "astro-compress": "^1.0.5",
     "solid-js": "^1.5.1"
   },
   "dependencies": {
-    "@astrojs/node": "^1.0.0",
-    "@astrojs/tailwind": "^1.0.0"
+    "@astrojs/node": "^1.0.0"
   }
 }
