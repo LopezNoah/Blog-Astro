@@ -3,6 +3,6 @@ import FullWidth from "../components/Layouts/FullWidth.astro";
 
 
 
-
+Astro.response.headers.set('Cache-Control', 's-maxage=86400, stale-while-revalidate');
 ---
 <FullWidth />
