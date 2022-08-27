@@ -8,9 +8,11 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "server": "astro build && node server/server.js"
+    "server": "astro build && node server/server.js",
+    "preview:deno": "deno run --allow-net --allow-read --allow-env ./dist/server/entry.mjs"
   },
   "devDependencies": {
+    "@astrojs/deno": "^1.0.0",
     "@astrojs/solid-js": "^1.1.0",
     "astro": "^1.0.9",
     "astro-compress": "^1.0.5",
@@ -21,9 +23,6 @@
     "@astrojs/tailwind": "^1.0.0",
     "@fastify/express": "^2.0.1",
     "@fastify/static": "^6.5.0",
-    "fastify": "^4.5.2",
-    "npm": "^8.18.0",
-    "preview": "^0.1.3",
-    "run": "^1.4.0"
+    "fastify": "^4.5.2"
   }
 }
