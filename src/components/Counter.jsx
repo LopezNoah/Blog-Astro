@@ -9,9 +9,9 @@ export default function Counter({ children }) {
 	return (
 		<>
 			<div class="counter">
-				<button onClick={subtract}>-</button>
+				<button onClick={subtract} className="touch-manipulation">-</button>
 				<pre>{count()}</pre>
-				<button onClick={add}>+</button>
+				<button onClick={add} className="touch-manipulation">+</button>
 			</div>
 			<div class="counter-message">{children}</div>
 		</>
