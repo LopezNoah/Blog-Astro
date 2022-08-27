@@ -1,0 +1,40 @@
+---
+import BlockWrapper from "../BlockWrapper.astro";
+import Navbar from "../Navbar.astro";
+import Zone from "../Zone.astro";
+
+console.log('Goodbye from Site Master!');
+console.log('____________________________');
+---
+
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Solid Rock Astro</title>
+</head>
+<body id="body">
+    <div class="min-h-full">
+        <Navbar/>
+        <div id="content-wrapper">
+            <!---
+            <slot name="feature"></slot>
+            -->
+            <div class="px-4 md:p-0 md:ml-8 md:mr-8 md:mt-8">
+                <slot name="main"></slot>
+                <div class="p-4 text-sm">
+                    <Zone name="Footer">
+                        This is where a footer would go
+                            <BlockWrapper>
+                                <span>Id: </span>,
+                                <span>Name: </span>,
+                                <span>Zone: </span>
+                            </BlockWrapper>
+                    </Zone>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
