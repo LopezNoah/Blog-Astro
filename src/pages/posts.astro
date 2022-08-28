@@ -7,6 +7,8 @@ const {frontmatter} = Astro.props;
 
 const posts = await Astro.glob('./posts/*.mdx');
 console.log(posts[0].frontmatter);
+Astro.response.headers.set('Cache-Control', 's-maxage=86400, stale-while-revalidate');
+//<link href="https://fonts.googleapis.com/css?family=Merriweather" rel="stylesheet" type="text/css"/>
 ---
 <html lang="en">
 <head>
@@ -19,7 +21,23 @@ console.log(posts[0].frontmatter);
            of salt that you'll keep coming back for.">
     <meta name="generator" content={Astro.generator} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link href="https://fonts.googleapis.com/css?family=Merriweather" rel="stylesheet" type="text/css"/>
+    <link rel="preconnect"
+      href="https://fonts.gstatic.com"
+      crossorigin />
+
+<!-- We use the full link to the CSS file in the rest of the tags -->
+<link rel="preload"
+      as="style"
+      href="https://fonts.googleapis.com/css2?family=Merriweather&display=swap" />
+
+<link rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Merriweather&display=swap"
+      media="print" onload="this.media='all'" />
+
+<noscript>
+  <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Merriweather&display=swap" />
+</noscript>
     <title>Solid Rock Astro</title>
     <style>
         .wrapper {
@@ -37,7 +55,7 @@ console.log(posts[0].frontmatter);
           grid-column: 1 / 4;
         }
         .wrapper {
-          font-family: "Merriweather", sans-serif;
+          font-family: "Merriweather", ui-sans-serif;
         }
       </style>
 </head>
