@@ -5,7 +5,6 @@ import tailwind from '@astrojs/tailwind';
 import solidJs from "@astrojs/solid-js";
 import compress from "astro-compress";
 import prefetch from "@astrojs/prefetch";
-
 import mdx from "@astrojs/mdx";
 
 // https://astro.build/config

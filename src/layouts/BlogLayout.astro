@@ -17,7 +17,16 @@ console.log(Astro.props);
            of salt that you'll keep coming back for.">
     <meta name="generator" content={Astro.generator} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link href="https://fonts.googleapis.com/css?family=Merriweather" rel="stylesheet" type="text/css"/>
+    <link rel="preload"
+      as="style"
+      href="https://fonts.googleapis.com/css2?family=Merriweather&display=swap" />
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Merriweather&display=swap"
+          media="print" onload="this.media='all'" />
+    <noscript>
+      <link rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Merriweather&display=swap" />
+    </noscript>
     <title>Solid Rock Astro</title>
     <style>
         .wrapper {
