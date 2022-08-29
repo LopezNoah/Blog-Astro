@@ -1,0 +1,30 @@
+---
+import BaseHead from "../components/BaseHead.astro";
+import Navbar from "../components/Navbar.astro";
+import PostCard from "../components/PostCard.astro";
+
+const { title, description } = Astro.props;
+
+Astro.response.headers.set('Cache-Control', 's-maxage=86400, stale-while-revalidate');
+//<link href="https://fonts.googleapis.com/css?family=Merriweather" rel="stylesheet" type="text/css"/>
+/*
+    <style>
+      :root {
+        background-color: #fef7ed
+      }
+    </style>
+*/
+---
+<html lang="en">
+  <head>
+    <BaseHead {title} {description} />
+  </head>
+  <body id="body">
+    <Navbar/>
+    <main>
+      <div class="min-h-full">
+          <slot/>
+      </div>
+    </main>
+  </body>
+</html>

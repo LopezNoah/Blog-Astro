@@ -1,8 +1,6 @@
 ---
-import Navbar from "../components/Navbar.astro";
 import PostCard from "../components/PostCard.astro";
-
-const {frontmatter} = Astro.props;
+import BaseLayout from "../layouts/BaseLayout.astro";
 
 const posts = await Astro.glob('./posts/*.mdx');
 console.log(posts[0].frontmatter);
@@ -11,67 +9,24 @@ Astro.response.headers.set('Cache-Control', 's-maxage=86400, stale-while-revalid
 /*
     <style>
       :root {
-        background-color: #fef7ed
+        background-color: #fcf7e9
       }
     </style>
 */
+const title = "📰 My Posts";
+const description = "My posts on things I'm learning";
+
 ---
-<html lang="en">
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta
-  name="description"
-  content="Mary's simple recipe for maple bacon donuts
-           makes a sticky, sweet treat with just a hint
-           of salt that you'll keep coming back for.">
-    <meta name="generator" content={Astro.generator} />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="preconnect"
-      href="https://fonts.gstatic.com"
-      crossorigin />
-    <!-- We use the full link to the CSS file in the rest of the tags -->
-    <link rel="preload"
-          as="style"
-          href="https://fonts.googleapis.com/css2?family=Merriweather&display=swap" />
-    <link rel="stylesheet"
-          href="https://fonts.googleapis.com/css2?family=Merriweather&display=swap"
-          media="print" onload="this.media='all'" />
-    <noscript>
-      <link rel="stylesheet"
-            href="https://fonts.googleapis.com/css2?family=Merriweather&display=swap" />
-    </noscript>
-    <title>📰 My Posts</title>
-    <style>
-        /*.wrapper {
-          width: 90%;
-          margin-right: auto;
-          margin-left: auto;
-          max-width: 49rem;
-        }
-        .wrapper--wide {
-          max-width: 65rem;
-        }*/
-        .wrapper {
-          font-family: "Merriweather", ui-sans-serif;
-        }
-      </style>
-</head>
-<body id="body">
-  <main>
-    <div class="min-h-full">
-        <Navbar/>
-        <div id="content" class="px-2 sm:px-0 w-11/12 mr-auto ml-auto max-w-5xl wrapper">
-            {posts.map(post => 
-                <PostCard
-                  url={post.url}
-                  title={post.frontmatter.title}
-                  description={post.frontmatter.description}
-                  emoji={post.frontmatter.emoji}
-                />
-            )}
-        </div>
-    </div>
-  </main>
-</body>
-</html>
+<BaseLayout {title} {description}>
+  <h1 class="text-4xl text-center mb-8">{title}</h1>
+  <div id="content" class="px-2 sm:px-0 w-11/12 mr-auto ml-auto max-w-3xl post-article">
+      {posts.map(post => !post.frontmatter.draft &&
+        <PostCard
+          url={post.url}
+          title={post.frontmatter.title}
+          description={post.frontmatter.description}
+          emoji={post.frontmatter.emoji}
+        />
+      )}
+  </div>
+</BaseLayout>

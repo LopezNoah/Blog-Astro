@@ -1,0 +1,30 @@
+---
+title: 'About Me'
+publishDate: '21 September 2022'
+draft: false
+emoji: '🧱'
+description: "About Noah Lopez"
+---
+
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+<BaseLayout title={frontmatter.title} description={frontmatter.description}>
+    <div class="px-2 sm:px-0 w-11/12 mr-auto ml-auto max-w-3xl merri
+     prose prose-li:marker:text-sky-200 prose-lg
+     prose-h1:text-4xl prose-h1:font-normal"
+     >
+
+    # {frontmatter.title}
+
+    I am an applications developer working at Bayside Church in California.
+    I graduated in 2022 with a degree in Computer Science from Liberty University.
+
+    Although computer science was my major, I was previously a mathematics major and considered going into education.
+    I still find education highly important and have worked at a school previously.
+
+    Some the things I'm interested in learning more about are:
+    - Databases: I find working with databases enjoyable and want a better understanding of how they function.
+    - Mathematics: I just enjoy the topic, especially because it was my initial major in college.
+    - Biology: I never went past an _Intro to Bio_ course and would love to expand my knowledge here.
+    </div>
+</BaseLayout>

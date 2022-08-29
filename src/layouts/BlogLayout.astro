@@ -1,63 +1,31 @@
 ---
+import BaseHead from "../components/BaseHead.astro";
 import Navbar from "../components/Navbar.astro";
-const {title} = Astro.props;
+const { frontmatter } = Astro.props;
+const { title, description, publishDate } = frontmatter;
 
 console.log(Astro.props);
 ---
 
-
 <html lang="en">
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta
-  name="description"
-  content="Mary's simple recipe for maple bacon donuts
-           makes a sticky, sweet treat with just a hint
-           of salt that you'll keep coming back for.">
-    <meta name="generator" content={Astro.generator} />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="preload"
-      as="style"
-      href="https://fonts.googleapis.com/css2?family=Merriweather&display=swap" />
-    <link rel="stylesheet"
-          href="https://fonts.googleapis.com/css2?family=Merriweather&display=swap"
-          media="print" onload="this.media='all'" />
-    <noscript>
-      <link rel="stylesheet"
-            href="https://fonts.googleapis.com/css2?family=Merriweather&display=swap" />
-    </noscript>
-    <title>Solid Rock Astro</title>
-    <style>
-        .wrapper {
-          display: grid;
-          grid-template-columns:
-            1fr
-            min(65ch, 100%)
-            1fr;
-        }
-        .wrapper > * {
-          grid-column: 2;
-        }
-        .full-bleed {
-          width: 100%;
-          grid-column: 1 / 4;
-        }
-        .prose {
-          font-family: "Merriweather", sans-serif;
-        }
-      </style>
-</head>
-<body id="body">
-    <div class="min-h-full">
-        <Navbar/>
-        <div id="content" class="px-2 sm:px-0 wrapper">
-            <h1 class="text-4xl text-center mb-2">{title}</h1>
-            <hr/>
-            <div id="content" class="prose prose-li:list-none">
-                <slot></slot>
-            </div>
-          </div>
-    </div>
-</body>
+  <head>
+    <BaseHead title={title} description={description}/>
+  </head>
+  <body id="body">
+    <Navbar/>
+    <main>
+      <div class="min-h-full">
+        <div id="post-title" class="px-2 sm:px-0 w-11/12 mr-auto ml-auto max-w-3xl post-article flex flex-col items-center">
+          <article id="content" class="prose prose-lg
+            prose-headings:underline prose-h1:text-4xl prose-h1:font-normal
+            prose-li:list-inside prose-li:marker:text-orange-800
+            selection:bg-fuchsia-200 selection:text-fuchsia-900
+            prose-hr:mt-2 prose-hr:mb-10
+            prose-a:text-blue-600">
+              <slot/>
+          </article>
+        </div>
+      </div>
+    </main>
+  </body>
 </html>
