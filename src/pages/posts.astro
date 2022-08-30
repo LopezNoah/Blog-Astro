@@ -18,7 +18,7 @@ const description = "My posts on things I'm learning";
 
 ---
 <BaseLayout {title} {description}>
-  <h1 class="text-4xl text-center mb-8">{title}</h1>
+  <h1 class="text-2xl lg:text-4xl text-center mb-8 merri">{title}</h1>
   <div id="content" class="px-2 sm:px-0 w-11/12 mr-auto ml-auto max-w-3xl post-article">
       {posts.map(post => !post.frontmatter.draft &&
         <PostCard

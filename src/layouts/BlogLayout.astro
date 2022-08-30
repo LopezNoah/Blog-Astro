@@ -16,12 +16,15 @@ console.log(Astro.props);
     <main>
       <div class="min-h-full">
         <div id="post-title" class="px-2 sm:px-0 w-11/12 mr-auto ml-auto max-w-3xl post-article flex flex-col items-center">
-          <article id="content" class="prose md:prose-md lg:prose-lg
+          <article id="content" class="prose-sm md:prose-md lg:prose-lg
             prose-headings:underline prose-h1:text-4xl prose-h1:font-normal
-            prose-li:list-inside prose-li:marker:text-orange-800
+            prose-ol:list-outside prose-ul:list-outside prose-ol:list-decimal prose-ul:list-disc prose-li:marker:text-orange-800
+            prose-p:text-sm md:prose-p:text-md lg:prose-p:text-lg
+            prose-p:leading-6 md:prose-p:leading-7 lg:prose-p:leading-8
             selection:bg-fuchsia-200 selection:text-fuchsia-900
             prose-hr:mt-2 prose-hr:mb-10
-            prose-a:text-blue-600">
+            prose-a:text-blue-600
+            ">
             <h1>{title}</h1>
             <p>Published: {publishDate}</p>
             <slot/>
