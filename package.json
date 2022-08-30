@@ -20,6 +20,7 @@
     "@tailwindcss/typography": "^0.5.4",
     "astro": "^1.0.9",
     "astro-compress": "^1.0.5",
+    "astro-critters": "^1.0.3",
     "solid-js": "^1.5.1"
   },
   "dependencies": {
