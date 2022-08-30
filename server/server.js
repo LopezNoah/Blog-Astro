@@ -6,7 +6,7 @@ const start = async () => {
     await fastify.register(require("@fastify/express"));
     const pkg = await import("../dist/server/entry.mjs");
     await fastify.register(require("@fastify/static"), {
-      root: path.join(__dirname,"..", "dist", "client"),
+      root: path.join(__dirname, "..", "dist", "client"),
     });
     fastify.use(pkg.handler);
     await fastify.listen({ port: 5000 });

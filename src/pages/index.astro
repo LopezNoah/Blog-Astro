@@ -1,20 +1,36 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
-
+import BaseLayout from "../layouts/BaseLayout.astro";
 
 const title = "Hello! I'm Noah";
-const description = "Hello! This is my website"
-Astro.response.headers.set('Cache-Control', 's-maxage=86400, stale-while-revalidate');
+const description = "Hello! This is my website";
+Astro.response.headers.set(
+  "Cache-Control",
+  "s-maxage=86400, stale-while-revalidate"
+);
 ---
 
 <BaseLayout title={title} description={description}>
-	<div class="px-2 sm:px-0 w-11/12 mr-auto ml-auto max-w-3xl post-article text-gray-700
-		">
-		<h1 class="text-2xl md:text-3xl mb-8">Hello, I'm Noah Lopez!</h1>
-		<div class="leading-6 md:leading-7 lg:leading-10">
-			<p class="text-sm md:text-md lg:text-lg my-3">Most of this website will be used to post articles and notes about things I'm learning through reading research papers and miscellaneous things.</p>
-			<p class="text-sm md:text-md lg:text-lg">I enjoy learning and am always seeking to grow my knowledge especially in my field: Computer Science.</p>
-		</div>
-		<p class="stext-sm md:text-md lg:text-lg text-center mt-8">This website was made using <a class="text-blue-600" href="https://astro.build">Astro</a> and <a class="text-blue-600" href="https://tailwindcss.com/">Tailwind</a></p>
-	</div>
+  <div
+    class="px-2 sm:px-0 w-11/12 mr-auto ml-auto max-w-3xl post-article text-gray-700"
+  >
+    <h1 class="text-2xl md:text-3xl mb-8">Hello, I'm Noah Lopez!</h1>
+    <div class="leading-6 md:leading-7 lg:leading-10">
+      <p class="text-sm md:text-md lg:text-lg my-3">
+        Most of this website will be used to post articles and notes about
+        things I'm learning through reading research papers and miscellaneous
+        things.
+      </p>
+      <p class="text-sm md:text-md lg:text-lg">
+        I enjoy learning and am always seeking to grow my knowledge especially
+        in my field: Computer Science.
+      </p>
+    </div>
+    <p class="stext-sm md:text-md lg:text-lg text-center mt-8">
+      This website was made using <a
+        class="text-blue-600"
+        href="https://astro.build">Astro</a
+      > and <a class="text-blue-600" href="https://tailwindcss.com/"
+        >Tailwind</a>
+    </p>
+  </div>
 </BaseLayout>

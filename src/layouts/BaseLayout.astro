@@ -5,7 +5,10 @@ import PostCard from "../components/PostCard.astro";
 
 const { title, description } = Astro.props;
 
-Astro.response.headers.set('Cache-Control', 's-maxage=86400, stale-while-revalidate');
+Astro.response.headers.set(
+  "Cache-Control",
+  "s-maxage=86400, stale-while-revalidate"
+);
 //<link href="https://fonts.googleapis.com/css?family=Merriweather" rel="stylesheet" type="text/css"/>
 /*
     <style>
@@ -15,15 +18,16 @@ Astro.response.headers.set('Cache-Control', 's-maxage=86400, stale-while-revalid
     </style>
 */
 ---
+
 <html lang="en">
   <head>
     <BaseHead {title} {description} />
   </head>
   <body id="body">
-    <Navbar/>
+    <Navbar />
     <main>
       <div class="min-h-full">
-          <slot/>
+        <slot />
       </div>
     </main>
   </body>

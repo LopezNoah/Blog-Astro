@@ -2,9 +2,12 @@
 import PostCard from "../components/PostCard.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
 
-const posts = await Astro.glob('./posts/*.mdx');
+const posts = await Astro.glob("./posts/*.mdx");
 console.log(posts[0].frontmatter);
-Astro.response.headers.set('Cache-Control', 's-maxage=86400, stale-while-revalidate');
+Astro.response.headers.set(
+  "Cache-Control",
+  "s-maxage=86400, stale-while-revalidate"
+);
 //<link href="https://fonts.googleapis.com/css?family=Merriweather" rel="stylesheet" type="text/css"/>
 /*
     <style>
@@ -15,18 +18,26 @@ Astro.response.headers.set('Cache-Control', 's-maxage=86400, stale-while-revalid
 */
 const title = "📰 My Posts";
 const description = "My posts on things I'm learning";
-
 ---
+
 <BaseLayout {title} {description}>
   <h1 class="text-2xl lg:text-4xl text-center mb-8 merri">{title}</h1>
-  <div id="content" class="px-2 sm:px-0 w-11/12 mr-auto ml-auto max-w-3xl post-article">
-      {posts.map(post => !post.frontmatter.draft &&
-        <PostCard
-          url={post.url}
-          title={post.frontmatter.title}
-          description={post.frontmatter.description}
-          emoji={post.frontmatter.emoji}
-        />
-      )}
+  <div
+    id="content"
+    class="px-2 sm:px-0 w-11/12 mr-auto ml-auto max-w-3xl post-article"
+  >
+    {
+      posts.map(
+        (post) =>
+          !post.frontmatter.draft && (
+            <PostCard
+              url={post.url}
+              title={post.frontmatter.title}
+              description={post.frontmatter.description}
+              emoji={post.frontmatter.emoji}
+            />
+          )
+      )
+    }
   </div>
 </BaseLayout>
