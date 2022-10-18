@@ -1,0 +1,32 @@
+---
+title: "Introduction to REST"
+publishDate: "20 October 2022"
+draft: true
+emoji: "😴"
+description: "An introduction to Roy Fielding's REST dissertation"
+layout: "../../layouts/BlogLayout.astro"
+---
+
+---
+## An Intersection of Three Ideas
+
+A while back I read a comment that left me thinking for a very long time. It was something that made a somewhat bold claim, and I wanted to spend time learning more about the topics to see if that claim held up.  The comment held the following claim:
+>... there is a direct line between Roy's insights, as expressing in ReST, and functional programming and the immutability revolution, and also the CAP theorem.
+>A strong version of this statement is that CAP is a mere footnote to ReST 
+
+\- jonahbenton (hackernews)
+
+As many things in a culture do, the meaning of "REST" changed as time has passed. This article will not dive into a modern interpretation of REST, and will stick to a stricter definition that aligns closely to HTMX.[^1] 
+
+## REST
+Roy Fielding's explanation of REST and the common usage of the phrase "REST API" are two distinct things. The original dissertation provides an explanation for a method of communication between clients and servers across a network. Roy Fielding's dissertation, titled *Architectural Styles and the Design of Network-based Software Architectures*, covers much more than just REST (Representational State Transfer). Rather than a 180 page document describing how to implement HTTP methods for a server, Fielding's dissertation touched on architectural methods and choices when communicating across a network.
+
+Roy Fielding was deeply involved in the beginnings of the Web's architecture: HTTP, URI, and HTML. He had a depth of knowledge on the subject unlike many others at the time. In his dissertation, Fielding points out the advantages and disadvantages of a full REST implementation. He discusses the layers upon which the idea is built and under what conditions those layers might be desired. For example, when discussing what a cache can do for this software architecture Fielding also points out that this could lead to stale data. It has the obvious advantage of saving information for quick retrieval, but with the risk of stale data if it is not up to date.
+
+Things like this are a common find throughout the dissertation: advantages and disadvantages for possible architectural choices in software. I, personally, think this fantastic and a superb way to detail a system designed for what Roy Fielding was helping create: the Web. There have been countless innovations in how we create and use application on the Internet. Using these innovations is akin to acquiring the right tool for the job. The architecture you use for a system will differ depending on what you are building. It's just that simple!
+
+HTMX is an project that aims to expand the capabilities of HTML so that is can function as a hypertext(CITATION). I've messed around with this project and found it to be quite enjoyable! One of its goals is to achieve REST's HATEOAS (Hypermedia as the Engine of Application State) constraint. This project has its own articles about HATEOAS and how important the constraint really is (CITATION), so I will link those instead of repeating them.
+
+What I find so fun about using HTMX is that I'm able to implement what they call "Hypermedia-Driven Applications" (HDAs). It's a mix of MPA(Multi-Page Applications) and SPA(Single-Page Application. For these projects, I used Astro (CITATION) as the SSR (Server-side Rendering) framework. I wasn't sure how easy it would be to create an HDA; however, Astro made it straightforward and enjoyable! I was able to retrieve HTML as a response to HTTP requests and then swap parts of the DOM with these fragments without reloading the full page.
+
+This is only the first article going over my thoughts with the original claim, so I wanted to lay the ground work here before diving deeper. In upcoming articles, I would like to discuss the CAP theorem (and likely its extension, PACELC) as well as Functional Programming.
