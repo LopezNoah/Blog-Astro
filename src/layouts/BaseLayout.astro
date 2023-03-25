@@ -1,6 +1,7 @@
 ---
 import BaseHead from "../components/BaseHead.astro";
 import Navbar from "../components/Navbar.astro";
+import Outlet from "../components/Outlet.astro";
 import PostCard from "../components/PostCard.astro";
 
 const { title, description } = Astro.props;
@@ -22,12 +23,19 @@ Astro.response.headers.set(
 <html lang="en">
   <head>
     <BaseHead {title} {description} />
+    <script>
+      import "../routing/htmx.js";
+      console.log("hello world");
+    </script>
   </head>
   <body id="body">
     <Navbar />
+    <slot name="whatthe"></slot>
     <main>
       <div class="min-h-full">
-        <slot />
+        <Outlet outletLevel="1">
+          <slot />
+        </Outlet> 
       </div>
     </main>
   </body>

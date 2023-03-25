@@ -1,0 +1,8 @@
+---
+
+const { outletLevel } = Astro.props;
+---
+
+<div id={`outlet-wrapper-${outletLevel}`} style="display:contents" >
+    <slot></slot>
+</div>

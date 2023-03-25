@@ -1,0 +1,24 @@
+---
+import { getCollection, getEntryBySlug } from 'astro:content';
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const { slug } = Astro.params
+
+if (!slug) {
+    return Astro.redirect("/posts");
+}
+
+const entry = await getEntryBySlug('posts', slug);
+
+if (!entry || entry.data.draft) {
+  return Astro.redirect("/posts");
+}
+
+const { Content } = await entry.render();
+
+Astro.response.headers.set(
+  "Cache-Control",
+  "s-maxage=120, stale-while-revalidate"
+);
+---
+<Content />

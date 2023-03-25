@@ -1,0 +1,14 @@
+---
+//const zone = {name: 'Main'}
+interface Zone {
+    name: string
+}
+const zone = Astro.props as Zone;
+/*
+console.log(zone);
+console.log('You\'re in the zone!' + zone.name);*/
+---
+
+<div id={zone.name}>
+    <slot></slot>
+</div>

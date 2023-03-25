@@ -1,0 +1,59 @@
+---
+title: "Astro-nomical Routing with Remix Routers"
+slug: "remix-routers"
+publishDate: "23 March 2023"
+draft: false
+emoji: "💿"
+description: "Blasting off in Astro with Remix Routers"
+layout: "../../layouts/BlogLayout.astro"
+---
+
+import vueRouter from "../../assets/VueRouter.png";
+import astroRoutes from "../../assets/remix-routers.png";
+
+# Introduction
+
+I'm personally a fan of [Remix](https://remix.run/) and [Astro](https://astro.build/). I think they're both great frameworks and love seeing them grow.
+One thing Astro is missing is a SPA router, although they are working on developing one.
+Remix, on the other hand, is built on the foundation of the React Router.
+Remix not only has the React Router, but they also are developing [routers](https://github.com/brophdawg11/remix-routers) in Vue, Svelte, and other libraries.
+I think it would be great to see Remix routers work with Astro. Let's take a look at how we can do that.
+
+# What is Astro?
+
+Explain what Astro is and why you chose to use it for your project.
+ Discuss how other SSR frameworks like Solid Start and Tanstack are planning to use Astro as their base.
+
+# Setting up the Remix router with Astro
+
+Getting started with the Remix routers is fairly straightforward.
+Once you have your preferred router installed, you can instantly start using it in your Astro project.
+The caveat is that these router components can only be loaded on the client.
+You will have to specify **client:only** on the Island in Astro.
+
+Here's an example of the Remix router working with Vue:
+<img src={vueRouter} />
+
+Here's an example of the Remix router working with Astro:
+<img src={astroRoutes} />
+
+# Limitations of using multiple routers
+
+Discuss the limitations of using multiple routers in a project
+and how they can affect communication between different parts of the application.
+Explain how this compares to something like React Query.
+
+Although I was able to get the routers working in Astro, they aren't connected.
+This isn't a huge deal for me since I just wanted to see how these packages worked.
+There might be a way to get them to interact with one another, but I hadn't looked into it.
+This would require the Link components from the routers to push history to each other.
+Again, it might be doable, but I haven't looked into it.
+It is weird to see one router be at one url and the other routers to show data from old urls.
+
+# Conclusion
+
+Implementing the Remix routers in Astro was fairly straightforward.
+I think it would be great to see Astro support these routers out of the box, in some capacity.
+I'm not sure how that would work, but I think it would be a great addition to the Astro ecosystem.
+I am interested in what it'd be like to run Remix directly off Astro.
+Astro already has a strong foundation for SSR, so building Remix with Vue or Svelte off of this would be great.
