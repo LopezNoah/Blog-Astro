@@ -10,7 +10,7 @@ if (!slug) {
 
 const entry = await getEntryBySlug('posts', slug);
 
-if (!entry || entry.data.draft) {
+if (!entry ) {//|| entry.data.draft) {
   return Astro.redirect("/posts");
 }
 

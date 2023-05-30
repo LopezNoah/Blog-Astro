@@ -7,21 +7,17 @@
     "start": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro",
-    "server": "astro build && node server/server.js",
-    "preview:deno": "deno run --allow-net --allow-read --allow-env ./dist/server/entry.mjs"
+    "astro": "astro"
   },
   "devDependencies": {
-    "@astrojs/deno": "^4.0.2",
     "@astrojs/mdx": "^0.17.2",
     "@astrojs/prefetch": "^0.1.2",
     "@astrojs/solid-js": "^2.0.2",
     "@astrojs/tailwind": "^3.0.1",
     "@tailwindcss/typography": "^0.5.4",
     "@typescript-eslint/parser": "^5.36.0",
-    "astro": "^2.1.7",
+    "astro": "^2.5.5",
     "astro-compress": "^1.0.5",
-    "astro-critters": "^1.0.3",
     "eslint": "^8.23.0",
     "eslint-plugin-astro": "^0.17.1",
     "eslint-plugin-jsx-a11y": "^6.6.1",
@@ -30,6 +26,7 @@
     "solid-js": "^1.5.1"
   },
   "dependencies": {
-    "@astrojs/node": "^1.0.0"
+    "@astrojs/node": "^1.0.0",
+    "@astrojs/vercel": "^3.4.0"
   }
 }
