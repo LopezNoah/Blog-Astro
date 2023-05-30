@@ -7,12 +7,9 @@
     "start": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro",
-    "server": "astro build && node server/server.js",
-    "preview:deno": "deno run --allow-net --allow-read --allow-env ./dist/server/entry.mjs"
+    "astro": "astro"
   },
   "devDependencies": {
-    "@astrojs/deno": "^4.0.2",
     "@astrojs/mdx": "^0.17.2",
     "@astrojs/prefetch": "^0.1.2",
     "@astrojs/solid-js": "^2.0.2",
