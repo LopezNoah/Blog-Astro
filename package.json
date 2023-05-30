@@ -19,9 +19,8 @@
     "@astrojs/tailwind": "^3.0.1",
     "@tailwindcss/typography": "^0.5.4",
     "@typescript-eslint/parser": "^5.36.0",
-    "astro": "^2.1.7",
+    "astro": "^2.5.5",
     "astro-compress": "^1.0.5",
-    "astro-critters": "^1.0.3",
     "eslint": "^8.23.0",
     "eslint-plugin-astro": "^0.17.1",
     "eslint-plugin-jsx-a11y": "^6.6.1",
@@ -30,6 +29,7 @@
     "solid-js": "^1.5.1"
   },
   "dependencies": {
-    "@astrojs/node": "^1.0.0"
+    "@astrojs/node": "^1.0.0",
+    "@astrojs/vercel": "^3.4.0"
   }
 }

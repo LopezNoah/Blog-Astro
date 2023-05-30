@@ -1,0 +1,140 @@
+---
+title: "Noria"
+slug: "noria"
+publishDate: "27 May 2023"
+draft: true
+emoji: "💿"
+description: "Blasting off in Astro with Remix Routers"
+layout: "../../layouts/BlogLayout.astro"
+---
+
+# Paper Title
+Noria: dynamic, partially-stateful data-flow
+for high-performance web applications
+
+>There are only two hard things in Computer Science: cache invalidation and naming things.
+> -- Phil Karlton
+
+## Citation
+- Author(s): Jon Gjengset, Malte Schwarzkopf, Jonathan Behrens, and Lara Timbó Araújo, Martin Ek, Eddie Kohler, M. Frans Kaashoek and Robert Morris,
+- Conference/Journal:
+- Year: 2018
+
+## Pass 1: General Idea
+
+- Title: Noria: dynamic, partially-stateful data-flow for high-performance web applications
+- Abstract: Noria is a partially-stateful backend that aims to solve the issue of persistent up-to-date views in a relational database.
+    It achieves many of its goals while reducing memory usage, and increasing performance of reads and writes on a MySQL database.
+- Introduction: The Noria paper addresses one of the biggest concerns that users face with web applications: latency.
+    Dynamic web applications typically retrieve data from a database, commonly a relational SQL database. This database must return data
+    in a timely manner so as not to disrupt the user experience. Another issue users face with web applications is stale data.
+    There are other implementations of how to fetch dynamic up-to-date data from a database; however, Noria proposes a new method that
+    claims to have multiple advantages over current solutions: differential dataflow, materialized views, and incremental view maintenance.
+
+### Section and Sub-section Headings
+
+1. Introduction
+2. Background
+3. Noria Design
+    1. Target Application and Deployments
+    2. Programming Interface
+    3. Data-flow Execution
+    4. Consistency Semantics
+    5. Challenges
+4. Partially-Stateful Data-flow
+    1. Data-flow model and invariants
+    2. Update Ordering
+    3. Join Upqueries
+    4. Eviction and Recursive Upqueries
+    5. Partial and Full State
+5. Dynamic Data-flow
+    1. Determining Data-flow changes
+    2. Data-flow transition
+6. Implementation
+    1. Persistent Data storage
+    2. Parallel Processing
+    3. Distributed Operation
+    4. MySQL adapter
+    5. Limitations
+7. applications
+8. Evaluation
+    1. Application performance - Lobsters
+    2. In-depth performance applications
+    3. Distribution over multiple servers
+    4. State size
+    5. Live data-flow adaptation
+    6. Discussion
+9. Related Work
+10. Conclusions
+
+### Conclusions
+Noria is a rust-based web application backend designed for low-latency with eentual consistency.
+Some of its achievements are only possible due to partial-state data-flow. This provides Noria a reduced memory footprint,
+with fast reads and writes. There is more work to be done and Noria does not support all current SQL keywords.
+
+### References
+
+- [Glance over the references, mark those already read]
+
+#### Five Cs
+
+1. Category: This is a description of a research prototype. Noria an existing Rust project from a PhD thesis.
+2. Context: This paper is related to databases, latency, and eventual consistency.
+3. Correctness: This paper makes claims that are backed up through the existing Rust project.
+    The reliability of these claims is reinforced by the fact that Planetscale uses it as the foundation for their _Boost_ feature.
+4. Contributions: The Noria project as well as the partial-state data-flow concepts.
+5. Clarity: I would say this paper is very well-written.
+
+- [Based on the above assessment, decide whether to continue reading or not]
+
+## Pass 2: Grasp Content
+
+One of the things that Noria does differently than typical caching is that it just doesn't cache.
+There still exists persistent storage, but it does not involve cache invalidation in the typical fashion.
+It reads incrementally for its views. It doesn't use natural SQL queries for its reads, and it is able to
+keep data across a long undetermined amount of time unlike other "previous week"-type queries.
+This is what makes Noria distinct from natural queries, key-value caches like Redis, and streamed "windowed" queries.
+You get the best of windowed queries and key-value caches without downtime.
+
+>Noria’s current design primarily targets relational operators,
+rather than the iterative or graph computations that are
+the focus of other data-flow systems
+
+Noria can be run on a server and uses _base_ tables and _derived_ tables. The base tables are stored on disk
+persistently while the derived tables are stored in memory on the server.
+Noria requires sufficient memory to maintain the views, but it will evict infrequently-accessed data.
+
+Noria programs look like plain SQL, but they actually use an internal syntax to allow for internal and external views.
+They do have a MySQL/MariaDB though that it mentioned in the paper.
+
+Noria's data-flow uses a directed acyclic graph(DAG) that consists of joins, filters, and aggregations across base tables and views.
+Noria depends on deterministic data. Non-deterministic functions like `NOW()` or `RAND()` make it difficult to persist data across the views.
+
+Personally, this is one of the most fasctinating parts of the Noria database. The ability to create the query as a DAG sounds intuitive.
+It reminds me of C#'s LINQ which forms the query through an abstract syntax tree. Obviously, LINQ doesn't perform the upquerying or live
+changes that Noria does however that's one similar I see.
+
+- Key points: [Jot down the main ideas and arguments]
+- Figures and Illustrations: [Evaluate the quality and relevance of figures and graphs]
+- Unread References: [Note relevant unread references for further reading]
+
+- [Summarize the main thrust of the paper with supporting evidence]
+
+- [Assess your understanding of the paper at this point]
+
+- [Decide whether to set the paper aside, return to it later, or proceed to the third pass]
+
+## Pass 3: In-depth Understanding
+
+- [Read the paper in-depth, understanding the details and proofs]
+- [Take detailed notes on important concepts, methodologies, and experimental techniques]
+
+- [Summarize the paper's content comprehensively]
+
+- [Evaluate your understanding after the third pass]
+
+- [Make a final decision on the paper's relevance and your level of comprehension]
+
+---
+
+*Note: Adapt this template to your note-taking style and feel free to add additional sections or modify it according to your needs.*
