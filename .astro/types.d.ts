@@ -198,6 +198,13 @@ declare module 'astro:content' {
 
 	type ContentEntryMap = {
 		"posts": {
+"access-control.mdx": {
+	id: "access-control.mdx";
+  slug: "understanding-access-control";
+  body: string;
+  collection: "posts";
+  data: InferEntrySchema<"posts">
+} & { render(): Render[".mdx"] };
 "first-post.mdx": {
 	id: "first-post.mdx";
   slug: "first-post";

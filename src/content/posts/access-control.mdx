@@ -1,0 +1,102 @@
+---
+title: "Understanding Access Control"
+slug: "understanding-access-control"
+publishDate: "6 August 2023"
+draft: false
+emoji: "🔒"
+description: ""
+layout: "../../layouts/BlogLayout.astro"
+---
+
+# Introduction
+
+In college, they teach you about security and many of the important things you need to do to build a secure application.
+A great resource for keeping up-to-date with security practices is to review OWASP's Top Ten.
+This is a dynamic list that ranks security risks in terms of how critical they are to a web application.
+One of the top ones has been broken access control, which means that permissions within the application aren't working as expected.
+Within a small personal application, one might not think about having to create permissions for people, or entities; However,
+as an application grows it becomes increasingly clear that access control is vital to the security of the project.
+In this article, I will be discussing some forms of access control and their implementations.
+
+# Role Based Access Control
+
+The first form of permissions that probably comes to mind for most people is **Role Based Access Control (RBAC)**.
+RBAC is exactly what it says it is: things are assigned roles and based on those roles they have certain permissions in the application.
+An example of this would be the roles 'Admin', 'Staff', and 'User'. Obviously, the admin role should have the highest permissions
+while the other two would be lower with user having the lowest permissions (if any).
+
+In terms of schema, this could be provided as a property or field on a main class, such as Person.
+It could also be defined in terms of groups and group roles.
+
+```json
+GroupMember {
+    Id
+    GroupId
+    Role // Role is defined on the Group Member
+    PersonId
+}
+
+Person {
+    Id
+    Role // Role is defined directly on the Person
+}
+```
+
+This form of access control makes a lot of sense at the beginning.
+Within a dynamic application you could even create many different groups to divide people into more specific permissions.
+The main problem that comes with RBAC is that you have to know the groups ahead of time.
+It can be pretty challenging to perform a large modification to the group permissions.
+If someone is in multiple roles, then it can be difficult to just reduce them to the role that best suits them.
+
+In an application we use at our work, they rely on RBAC for permissions.
+They give a default role for un-authenticated users and the roles are checked in a top-down style when permissions are checked.
+For an example, you can have a page that should only be viewed by a few groups. That would look like this:
+
+
+| Group   | Allow/Deny |
+|---------|------------|
+| Group A | Allow      |
+| Group B | Allow      |
+| Group C | Allow      |
+| All Users | Deny      |
+
+If a person is within Groups A-C, they have the correct permissions; however, the rest of the users don't have those permissions.
+
+## Implementation
+
+In this application, the way they implement permissions is with a SQL table that stores most of the permissions
+ as well as some logic within the classes. The SQL table parts are fairly easy to understand, but it becomes
+ complicated when you have to reach into a class to find who its parent authority is.
+
+Maybe the oddest thing about it that I noticed is that it stores the permissions in server cache:
+```csharp
+var authorizations = new Dictionary<int, Dictionary<int, Dictionary<string, List<AuthRule>>>>();
+```
+I don't think it's a bad thing to store the permissions in cache, except for when the permissions update and the cache needs to change.
+I do think it's interesting to use a triple nested dictionary to store these though.
+It allows for some fast retrieval times, but it also increases the complexity of the code.
+I would love to see how other projects implement RBAC.
+For instance, I'm pretty sure you could implement this same system with trees instead of dictionaries.
+
+# Attribute Based Access Control
+
+**Attribute Based Access Control(ABAC)** defines the permissions for a system based on attributes of the user, or environment.
+In a silly example, this could mean only users with the name "Joe Schmoe" would be able to view a page.
+In a more serious example, it could mean that employees at a company can only access a system within a specified time window.
+
+ABAC is much more fine-grained than RBAC, but it's a lot more flexible in my opinion.
+ABAC allows the application to have permissions defined around things outside of the user's identity.
+I think, technically, ABAC can use a "role" property for its definitions; however, that just sounds like RBAC with extra steps.
+In terms of implementations, I have not worked with a system that uses ABAC previously so I can't comment much on this.
+I imagine the logic for finding valid attributes would be more complicated than the technique used for RBAC.
+
+# Conclusion
+
+It's really important to consider access control within a software application at scale.
+There is no "one size fits all" solution for systems, so a project could use either ABAC or RBAC.
+In fact, a great solution would be a mix of both systems! Be warned though, this would be a larger undertaking
+than just implementing one or the other. It may also turn out to be worse than just choosing one!
+
+In the end, as long as an application has access control at all is a step in the right direction.
+Nobody wants to be a liability for leaking sensitive information out, or putting people in harm's way
+through their lack of care. Security and quality code should be top of mind for any project.
